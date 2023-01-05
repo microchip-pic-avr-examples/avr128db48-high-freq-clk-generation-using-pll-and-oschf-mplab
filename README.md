@@ -2,44 +2,127 @@
 
 [![MCHP](images/microchip.png)](https://www.microchip.com)
 
-# Update the title for avr128db48-high-freq-clk-generation-using-pll-and-oschf-mplab here
+# High-Frequency clock signal generation for TCD using PLL and Internal High-Frequency RC Oscillator (OSCHF) using AVR128DB48
 
-<!-- This is where the introduction to the example goes, including mentioning the peripherals used -->
+This code example demonstrates usage of PLL feature of AVR128DB48 MCU to generate high-frequency clock to TCD peripheral of the AVR Dx family of microcontrollers. In this code example, the PLL module is supplied with internal high-frequency RC oscillator (OSCHF) as input to generate 48MHz clock at its output. The generated 48MHz clock is fed as clock input to the TCD peripheral.
 
-## Related Documentation
+## Introduction
 
-<!-- Any information about an application note or tech brief can be linked here. Use unbreakable links!
-     In addition a link to the device family landing page and relevant peripheral pages as well:
-     - [AN3381 - Brushless DC Fan Speed Control Using Temperature Input and Tachometer Feedback](https://microchip.com/00003381/)
-     - [PIC18F-Q10 Family Product Page](https://www.microchip.com/design-centers/8-bit/pic-mcus/device-selection/pic18f-q10-product-family) -->
+To support the real world control applications, various features are incorporated in the microcontrollers. One such field is a high speed PWM signal generation with good resolution which forms the basis of various power stage control applications like audio amplifiers, SMPS, LED Lighting, Pulse Power conversions, H bridge drive, equalization networks, volume controls and much more. The clock signal will govern the conversion rate of data, clock speed and even the accuracy (in terms of waveform generation).
 
-## Software Used
+The AVR128DB48 microcontrollers of the AVR® DB family have an internal high frequency oscillator (OSCHF) that supports output frequencies up to 24MHz, to support the range of frequencies. This device supports a simplified set of features. It includes the Timer/Counter type D (TCD) which is a high-performance waveform generator. It contains compare logic that generates two independent outputs. OSCHF can be used as a main clock, peripheral clock or also as an input to the Phased Lock Loop (PLL). The PLL can be used to increase the frequency of the clock source. This code example demonstrates a high frequency clock signal generation for TCD peripheral using PLL and OSCHF as its clock input. The PWM signals WOA and WOB are generated with different Set and Clear timings and can be observed on any oscilloscope.
 
-<!-- All software used in this example must be listed here. Use unbreakable links!
-     - MPLAB® X IDE 5.30 or newer [(microchip.com/mplab/mplab-x-ide)](http://www.microchip.com/mplab/mplab-x-ide)
-     - MPLAB® XC8 2.10 or a newer compiler [(microchip.com/mplab/compilers)](http://www.microchip.com/mplab/compilers)
-     - MPLAB® Code Configurator (MCC) 3.95.0 or newer [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
-     - MPLAB® Code Configurator (MCC) Device Libraries PIC10 / PIC12 / PIC16 / PIC18 MCUs [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
-     - Microchip PIC18F-Q Series Device Support (1.4.109) or newer [(packs.download.microchip.com/)](https://packs.download.microchip.com/) -->
+## Useful Links
 
-- MPLAB® X IDE 6.0.0 or newer [(MPLAB® X IDE 6.0)](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-x-ide?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_MMTCha_MPAE_Examples&utm_content=avr128db48-high-freq-clk-generation-using-pll-and-oschf-mplab-github)
-- MPLAB® XC8 2.40.0 or newer compiler [(MPLAB® XC8 2.40)](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-xc-compilers?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_MMTCha_MPAE_Examples&utm_content=avr128db48-high-freq-clk-generation-using-pll-and-oschf-mplab-github)
+- [Microchip University Courses](https://mu.microchip.com/page/all-courses)
+- [Generating PWM Signals Using TCD with High-Frequency Input](https://ww1.microchip.com/downloads/en/Appnotes/Generating-PWMSignals-Using-TCD-with-HF-Input-DS90003236C.pdf)
+- [AVR128DB48 Product Page](https://www.microchip.com/en-us/product/AVR128DB48)
 
-## Hardware Used
+## Description
 
-<!-- All hardware used in this example must be listed here. Use unbreakable links!
-     - PIC18F47Q10 Curiosity Nano [(DM182029)](https://www.microchip.com/Developmenttools/ProductDetails/DM182029)
-     - Curiosity Nano Base for Click boards™ [(AC164162)](https://www.microchip.com/Developmenttools/ProductDetails/AC164162)
-     - POT Click board™ [(MIKROE-3402)](https://www.mikroe.com/pot-click) -->
+The scope of this example is to generate high frequency clock signal for TCD peripheral using the PLL feature with OSCHF module and TCD peripheral. The TCD provides four different Waveform Generation modes. In this example, the TCD peripheral is configured in Two Ramp mode. The Compare A Set, Compare A Clear, Compare B Set and Compare B Clear compare values define when each state ends and the next begins. In Two Ramp mode, the TCD counter counts until it reaches the CMPACLR value, then it resets and counts until it reaches the CMPBCLR value. Here, the Compare A Set, Compare A Clear, Compare B Set, and Compare B Clear registers are set with 10us, 30us, 50us and 80us values respectively. The multiplication factor is set to 2x to scale up the input clock frequency. The PWM signals generated are routed to output on WOA and WOB. The signals generated on the WOA and WOB pins will have duty cycle of 10% and 20% respectively.
 
-## Setup
+<p align="center">
+  <img width=600 height=auto src="images/blk_diag.png">
+  <br>Figure 1: System Block Diagram<br>
+</p>
 
-<!-- Explain how to connect hardware and set up software. Depending on complexity, step-by-step instructions and/or tables and/or images can be used -->
+## Software  Tools
 
-## Operation
+* MPLAB® X IDE [v6.05.0 or newer](https://www.microchip.com/mplab/mplab-x-ide)
+* XC8 Compiler [v2.40.0 or newer](https://www.microchip.com/mplab/compilers)
+* Microchip AVR-Dx_DFP Series Device Support Pack [2.3.272 or newer](https://packs.download.microchip.com/#collapse-Microchip-AVR-Dx-DFP-pdsc)
+* MPLAB® Code Configurator [v5.2.2 or newer](https://www.microchip.com/mplab/mplab-code-configurator)
+* TCD 4.0.12
 
-<!-- Explain how to operate the example. Depending on complexity, step-by-step instructions and/or tables and/or images can be used -->
+***Note: For running the demo, the installed tool versions should be the same or later. This example is not tested with the previous versions.***
 
-## Summary
+## Hardware Tools
 
-<!-- Summarize what the example has shown -->
+* [AVR128DB48 Curiosity Nano](https://www.microchip.com/en-us/development-tool/EV35L43A)
+
+## Application Firmware
+
+The example firmware uses TCD peripheral to scale-up the system clock frequency. In this firmware, the system clock is configured to operate at 24MHz. The TCD peripheral is configured to run at 48MHz with PLL as its clock input. Configure the TCD peripheral in two ramp mode. The compare Set and Clear A and B registers are loaded with 10us, 30us, 50us and 80us respectively. The TCD peripheral is configured in two ramp mode. The waveform outputs are observed as soon as the TCD peripheral is enabled.
+
+## Appendix
+
+MCC – MPLAB® Code Configurator is a graphical programming environment that generates seamless, easy to understand C code to give a head start to the project, saving the designer’s time to initialize and configure all the modules, and to go through the datasheets. Using an instructive interface, it enables and configures all peripherals and functions specific to the application requirements.
+
+**Start by creating a new Project and open MCC**
+
+* Open MPLAB X IDE
+* Go to File > New Project
+* Select Microchip Embedded > Standalone Project
+* Enter the device name. In this case, select AVR128DB48 device
+* Name the project
+* Launch MCC tool by navigating to **“Tools -> Embedded -> MPLAB Code Configurator v4: Open/Close”**. Alternatively, click the MCC icon to launch the MCC tool.
+
+## System configuration
+
+* **System Clock**
+Open **Clock Control** setup present under **System** dropdown menu in **Project Resources** tab.
+
+* Clock Selection: **Internal high-frequency Osc**
+* Internal Osc. Freq.: **1-32MHz internal Osc**
+* Osc. Freq. selection: **24MHz**
+* Multiplication Factor: **2x**
+* Ext. clock source for PLL: **OSCHF**
+
+<p align="center">
+  <img width=600 height=auto src="images/system_config.png">
+  <br>Figure 2: System Configuration<br>
+</p>
+
+* **TCD**
+Open **TCD** setup present under **Driver** dropdown menu in **Project Resources** tab.
+
+* Enable TCD
+* Clock selection: **PLL**
+* Compare A Set (us): **10**
+* Compare A Clear (us): **30**
+* Compare B Set (us): **50**
+* Compare A Clear (us): **80**
+* Waveform Generation Mode: **Two Ramp mode**
+* Enable Compare Output Value
+
+<p align="center">
+  <img width=600 height=auto src="images/tcd_config.png">
+  <br>Figure 3: TCD Configuration (Part-1)<br>
+</p>
+
+<p align="center">
+  <img width=600 height=auto src="images/tcd_config1.png">
+  <br>Figure 4: TCD Configuration (Part-2)<br>
+</p>
+
+## Pin Mapping
+The following images informs about the pin usage in the project.
+
+<p align="center">
+  <img width=600 height=auto src="images/pin_config.png">
+  <br>Figure 5: Pin Mapping (List View)<br>
+</p>
+
+<p align="center">
+  <img width=600 height=auto src="images/pin_config1.png">
+  <br>Figure 6: Pin Mapping (Navigation View)<br>
+</p>
+
+## Hardware Setup
+The following figure consists of AVR128DB48 Curiosity Nano Evaluation kit along with Saleae Logic Analyzer. Connect the logic analyzer to the MCU using connecting cables.
+
+<p align="center">
+  <img width=600 height=auto src="images/setup.png">
+  <br>Figure 7: Hardware Setup<br>
+</p>
+
+## Demo Operation
+
+* Make the hardware connections as shown in the hardware setup. Power up the Curiosity Nano board using micro-USB cable.
+* Download the firmware available from the GitHub code example page.
+* Build the project using latest version of tools as mentioned in the Software Tools section and flash the generated file on the AVR128DB48 microcontroller.
+* Monitor the set and clear timings for waveform output A and B.
+
+## Conclusion
+This code example demonstrates generation of high frequency clock input to the TCD peripheral using PLL and OSCHF modules of the AVR128DB48 microcontroller. The real-world power stage control applications greatly benefitted with the TCD peripheral of AVR family of microcontrollers as it can generate high speed PWM waveform with a good resolution.
