@@ -5,12 +5,12 @@
         "metaDataVersion": "1.3.0",
         "name": "com.microchip.mcu8.mplabx.project.avr128db48-high-freq-clk-generation-using-pll-and-oschf-mplab",
         "version": "1.0.0",
-        "displayName": "High-Frequency clock signal generation for TCD using PLL and Internal High-Frequency RC Oscillator (OSCHF) using AVR128DB48",
+        "displayName": "High Frequency clock signal generation for TCD using PLL and Internal High Frequency RC Oscillator using AVR128DB48",
         "projectName": "avr128db48-high-freq-clk-generation-using-pll-and-oschf-mplab",
-        "shortDescription": "This code example demonstrates usage of AVR128DB48 microcontroller for configuring OSCHF with PLL. In this code example, use of Timer/Counter type D (TCD) peripheral to realize peripheral clock frequency of 48MHz is demonstrated.",
+        "shortDescription": "This code example demonstrates usage of AVR128DB48 microcontroller for configuring OSCHF with PLL. In this code example, use of Timer Counter type D (TCD) peripheral to realize peripheral clock frequency of 48MHz is demonstrated.",
         "ide": {
             "name": "MPLAB X",
-            "semverRange": ">=6.05.0"
+            "semverRange": ">=6.5.0"
         },
         "compiler": [
             {
