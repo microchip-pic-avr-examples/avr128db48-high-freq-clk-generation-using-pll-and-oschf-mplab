@@ -2,15 +2,15 @@
 
 [![MCHP](images/microchip.png)](https://www.microchip.com)
 
-# High-Frequency clock signal generation for TCD using PLL and Internal High-Frequency RC Oscillator (OSCHF) using AVR128DB48
+#  High-Frequency Clock Signal Generation for TCD using PLL and Internal High-Frequency RC Oscillator (OSCHF) using AVR128DB48
 
-This code example demonstrates usage of PLL feature of AVR128DB48 MCU to generate high-frequency clock to TCD peripheral of the AVR Dx family of microcontrollers. In this code example, the PLL module is supplied with internal high-frequency RC oscillator (OSCHF) as input to generate 48MHz clock at its output. The generated 48MHz clock is fed as clock input to the TCD peripheral.
+This code example shows how the PLL feature of AVR128DB48 generates a high-frequency clock signal for the TCD peripheral of the AVR Dx family. In this code example, the PLL module is supplied with an OSCHF as input, to generate 48 MHz clock at its output. The generated 48 MHz clock signal is used as a clock input by the TCD peripheral.
 
 ## Introduction
 
-To support the real world control applications, various features are incorporated in the microcontrollers. One such field is a high speed PWM signal generation with good resolution which forms the basis of various power stage control applications like audio amplifiers, SMPS, LED Lighting, Pulse Power conversions, H bridge drive, equalization networks, volume controls and much more. The clock signal will govern the conversion rate of data, clock speed and even the accuracy (in terms of waveform generation).
+To support the control applications, various features are incorporated in the microcontrollers. The high-speed PWM signal has a resolution that benefits the audio amplifiers, SMPS, LED Lighting, Pulse Power conversions, H-bridge drive, equalization networks, volume controls and much more. The clock signal controls the conversion rate of data, clock speed and accuracy (in terms of waveform generation).
 
-The AVR128DB48 microcontrollers of the AVR® DB family have an internal high frequency oscillator (OSCHF) that supports output frequencies up to 24MHz, to support the range of frequencies. This device supports a simplified set of features. It includes the Timer/Counter type D (TCD) which is a high-performance waveform generator. It contains compare logic that generates two independent outputs. OSCHF can be used as a main clock, peripheral clock or also as an input to the Phased Lock Loop (PLL). The PLL can be used to increase the frequency of the clock source. This code example demonstrates a high frequency clock signal generation for TCD peripheral using PLL and OSCHF as its clock input. The PWM signals WOA and WOB are generated with different Set and Clear timings and can be observed on any oscilloscope.
+The AVR128DB48 microcontrollers of the AVR® DB family have an internal high-frequency oscillator (OSCHF), which maintains outputs frequencies up to 24 MHz and supports the range of frequencies. This device supports a simplified set of features. It includes the Timer/Counter type D (TCD) which is a high-performance waveform generator. It contains compare logic that generates two independent outputs. OSCHF can be used as a main clock, peripheral clock or also as an input to the Phased Lock Loop (PLL). The PLL can be used to increase the frequency of the clock source. This code example demonstrates a high frequency clock signal generation for TCD peripheral using PLL and OSCHF as its clock input. The PWM signals WOA and WOB are generated with different Set and Clear timings and can be observed on any oscilloscope.
 
 ## Useful Links
 
@@ -20,7 +20,7 @@ The AVR128DB48 microcontrollers of the AVR® DB family have an internal high fre
 
 ## Description
 
-The scope of this example is to generate high frequency clock signal for TCD peripheral using the PLL feature with OSCHF module and TCD peripheral. The TCD provides four different Waveform Generation modes. In this example, the TCD peripheral is configured in Two Ramp mode. The Compare A Set, Compare A Clear, Compare B Set and Compare B Clear compare values define when each state ends and the next begins. In Two Ramp mode, the TCD counter counts until it reaches the CMPACLR value, then it resets and counts until it reaches the CMPBCLR value. Here, the Compare A Set, Compare A Clear, Compare B Set, and Compare B Clear registers are set with 10us, 30us, 50us and 80us values respectively. The multiplication factor is set to 2x to scale up the input clock frequency. The PWM signals generated are routed to output on WOA and WOB. The signals generated on the WOA and WOB pins will have duty cycle of 10% and 20% respectively.
+This example shows how to generate a high-frequency clock signal for the TCD peripheral using the PLL feature with the OSCHF module and TCD peripheral. The TCD provides four different Waveform Generation modes. In this example, the TCD peripheral is configured in Two Ramp mode. The Compare A Set, Compare A Clear, Compare B Set, and Compare B Clear define when each state ends and begins. In Two Ramp mode, the TCD counter counts until it reaches the CMPACLR value, then it resets and counts until it reaches the CMPBCLR value. Here, the Compare A Set, Compare A Clear, Compare B Set, and Compare B Clear registers are set with 0 μs, 30 μs, 50 μs, and 80 μs values respectively. The multiplication factor is set to 2x to scale up the input clock frequency. The PWM signals generated are routed to output on WOA and WOB. The signals generated on the WOA and WOB pins will have duty cycle of 10% and 20% respectively.
 
 <p align="center">
   <img width=600 height=auto src="images/blk_diag.png">
@@ -35,7 +35,7 @@ The scope of this example is to generate high frequency clock signal for TCD per
 * MPLAB® Code Configurator [v5.2.2 or newer](https://www.microchip.com/mplab/mplab-code-configurator)
 * TCD 4.0.12
 
-***Note: For running the demo, the installed tool versions should be the same or later. This example is not tested with the previous versions.***
+***Note: For running the demo, the installed tool versions are expected to be the same or newer. This example is not tested with the previous versions.***
 
 ## Hardware Tools
 
@@ -43,29 +43,29 @@ The scope of this example is to generate high frequency clock signal for TCD per
 
 ## Application Firmware
 
-The example firmware uses TCD peripheral to scale-up the system clock frequency. In this firmware, the system clock is configured to operate at 24MHz. The TCD peripheral is configured to run at 48MHz with PLL as its clock input. Configure the TCD peripheral in two ramp mode. The compare Set and Clear A and B registers are loaded with 10us, 30us, 50us and 80us respectively. The TCD peripheral is configured in two ramp mode. The waveform outputs are observed as soon as the TCD peripheral is enabled.
+The example firmware uses a TCD peripheral to scale up the system clock frequency. In this firmware, the system clock is configured to operate at 24 MHz. The TCD peripheral is configured to run at 48 MHz with PLL as its clock input. Configure the TCD peripheral in Two Ramp mode. The compare Set and Clear registers A, B are loaded with 10 μs, 30 μs, 50 μs and 80 μs. The TCD peripheral is configured in two ramp mode. The waveform outputs are observed when the TCD peripheral is enabled.
 
 ## Appendix
 
-MCC – MPLAB® Code Configurator is a graphical programming environment that generates seamless, easy to understand C code to give a head start to the project, saving the designer’s time to initialize and configure all the modules, and to go through the datasheets. Using an instructive interface, it enables and configures all peripherals and functions specific to the application requirements.
+MPLAB® Code Configurator (MCC) is a graphical programming environment that generates seamless, easy-to-understand C code to give a head start to the project, saving the designer’s time to initialize and configure all the modules and go through the data sheets. Using an instructive interface, it enables and configures all peripherals and functions specific to the application requirements.
 
 **Start by creating a new Project and open MCC**
 
 * Open MPLAB X IDE
-* Go to File > New Project
-* Select Microchip Embedded > Standalone Project
-* Enter the device name. In this case, select AVR128DB48 device
-* Name the project
-* Launch MCC tool by navigating to **“Tools -> Embedded -> MPLAB Code Configurator v4: Open/Close”**. Alternatively, click the MCC icon to launch the MCC tool.
+* Go to **File** and click **New Project**.
+* Select **Microchip Embedded** and click **Standalone Project**.
+* Enter the device name. In this case, select **AVR128DB48** device.
+* Name the project.
+* Launch MCC tool by navigating to **“Tools**, **Embedded** and **MPLAB Code Configurator v4: Open/Close”**. Alternatively, click the MCC icon to launch the MCC tool.
 
 ## System configuration
 
 * **System Clock**
-Open **Clock Control** setup present under **System** dropdown menu in **Project Resources** tab.
+Open **Clock Control** setup present under **System** drop down menu in **Project Resources** tab.
 
 * Clock Selection: **Internal high-frequency Osc**
-* Internal Osc. Freq.: **1-32MHz internal Osc**
-* Osc. Freq. selection: **24MHz**
+* Internal Osc. Freq.: **1-32 MHz internal Osc**
+* Osc. Freq. selection: **24 MHz**
 * Multiplication Factor: **2x**
 * Ext. clock source for PLL: **OSCHF**
 
@@ -79,10 +79,10 @@ Open **TCD** setup present under **Driver** dropdown menu in **Project Resources
 
 * Enable TCD
 * Clock selection: **PLL**
-* Compare A Set (us): **10**
-* Compare A Clear (us): **30**
-* Compare B Set (us): **50**
-* Compare A Clear (us): **80**
+* Compare A Set (μs): **10**
+* Compare A Clear (μs): **30**
+* Compare B Set (μs): **50**
+* Compare A Clear (μs): **80**
 * Waveform Generation Mode: **Two Ramp mode**
 * Enable Compare Output Value
 
