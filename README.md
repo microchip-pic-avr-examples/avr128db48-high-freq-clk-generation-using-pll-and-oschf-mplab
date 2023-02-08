@@ -20,7 +20,7 @@ The AVR128DB48 microcontrollers of the AVR® DB family have an internal high-fre
 
 ## Description
 
-This example shows how to generate a high-frequency clock signal for the TCD peripheral using the PLL feature with the OSCHF module and TCD peripheral. The TCD provides four different Waveform Generation modes. In this example, the TCD peripheral is configured in Two Ramp mode. The Compare A Set, Compare A Clear, Compare B Set, and Compare B Clear define when each state ends and begins. In Two Ramp mode, the TCD counter counts until it reaches the CMPACLR value, then it resets and counts until it reaches the CMPBCLR value. Here, the Compare A Set, Compare A Clear, Compare B Set, and Compare B Clear registers are set with 0 μs, 30 μs, 50 μs, and 80 μs values respectively. The multiplication factor is set to 2x to scale up the input clock frequency. The PWM signals generated are routed to output on WOA and WOB. The signals generated on the WOA and WOB pins will have duty cycle of 10% and 20% respectively.
+This example shows how to generate a high-frequency clock signal for the TCD peripheral using the PLL feature with the OSCHF module. The TCD provides four different Waveform Generation modes. In this example, the TCD peripheral is configured in Two Ramp mode. The Compare A Set, Compare A Clear, Compare B Set, and Compare B Clear define when each state ends and begins. In Two Ramp mode, the TCD counter counts until it reaches the CMPACLR value, then it resets and counts until it reaches the CMPBCLR value. Here, the Compare A Set, Compare A Clear, Compare B Set, and Compare B Clear registers are set with 0 μs, 30 μs, 50 μs, and 80 μs values respectively. The PWM signals generated are routed to output on WOA and WOB. The signals generated on the WOA and WOB pins will have duty cycle of 10% and 20% respectively.
 
 <p align="center">
   <img width=600 height=auto src="images/blk_diag.png">
@@ -43,7 +43,7 @@ This example shows how to generate a high-frequency clock signal for the TCD per
 
 ## Application Firmware
 
-The example firmware uses a TCD peripheral to scale up the system clock frequency. In this firmware, the system clock is configured to operate at 24 MHz. The TCD peripheral is configured to run at 48 MHz with PLL as its clock input. Configure the TCD peripheral in Two Ramp mode. The compare Set and Clear registers A, B are loaded with 10 μs, 30 μs, 50 μs and 80 μs. The TCD peripheral is configured in two ramp mode. The waveform outputs are observed when the TCD peripheral is enabled.
+The example firmware uses a TCD peripheral to scale up the system clock frequency. In this firmware, the system clock is configured to operate at 24 MHz. The TCD peripheral is configured to run at 48 MHz with PLL as its clock input. Here, the multiplication factor is set to 2x to scale up the input clock frequency. Configure the TCD peripheral in Two Ramp mode. The compare Set and Clear registers A, B are loaded with 10 μs, 30 μs, 50 μs and 80 μs. The TCD peripheral is configured in two ramp mode. The waveform outputs are observed when the TCD peripheral is enabled.
 
 ## Appendix
 
