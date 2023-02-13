@@ -4,7 +4,7 @@
 
 #  High-Frequency Clock Signal Generation for TCD using PLL and Internal High-Frequency RC Oscillator (OSCHF) using AVR128DB48
 
-This code example demonstrates usage of AVR128DB48 microcontroller to generate 48MHz clock signal using PLL and OSCHF. In this code example, use of Timer/Counter type D (TCD) peripheral to realize peripheral clock frequency of 48MHz is demonstrated.
+This code example shows how the PLL feature of AVR128DB48 generates a high-frequency clock signal for the TCD peripheral of the AVR Dx family. In this code example, the PLL module is supplied with an OSCHF as input, to generate 48 MHz clock at its output. The generated 48 MHz clock signal is used as a clock input by the TCD peripheral.
 
 ## Introduction
 
