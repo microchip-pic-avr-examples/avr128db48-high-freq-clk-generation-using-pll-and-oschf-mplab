@@ -4,7 +4,7 @@
 
 #  High-Frequency Clock Signal Generation for TCD using PLL and Internal High-Frequency RC Oscillator (OSCHF) using AVR128DB48
 
-This code example shows how the PLL feature of AVR128DB48 generates a high-frequency clock signal for the TCD peripheral of the AVR Dx family. In this code example, the PLL module is supplied with an OSCHF as input, to generate 48 MHz clock at its output. The generated 48 MHz clock signal is used as a clock input by the TCD peripheral.
+This code example demonstrates usage of AVR128DB48 microcontroller to generate 48MHz clock signal using PLL and OSCHF. In this code example, use of Timer/Counter type D (TCD) peripheral to realize peripheral clock frequency of 48MHz is demonstrated.
 
 ## Introduction
 
@@ -43,7 +43,27 @@ This example shows how to generate a high-frequency clock signal for the TCD per
 
 ## Application Firmware
 
-The example firmware uses a TCD peripheral to scale up the system clock frequency. In this firmware, the system clock is configured to operate at 24 MHz. The TCD peripheral is configured to run at 48 MHz with PLL as its clock input. Here, the multiplication factor is set to 2x to scale up the input clock frequency. Configure the TCD peripheral in Two Ramp mode. The compare Set and Clear registers A, B are loaded with 10 μs, 30 μs, 50 μs and 80 μs. The TCD peripheral is configured in two ramp mode. The waveform outputs are observed when the TCD peripheral is enabled.
+The example firmware uses a TCD peripheral to scale up the system clock frequency. In this firmware, the system clock is configured to operate at 24 MHz. The TCD peripheral is configured to run at 48 MHz with PLL as its clock input. Here, the PLL multiplication factor is set to 2x to scale up the input clock frequency. Configure the TCD peripheral in Two Ramp mode. The compare Set and Clear registers A, B are loaded with 10 μs, 30 μs, 50 μs and 80 μs. The TCD peripheral is configured in two ramp mode. The waveform outputs are observed when the TCD peripheral is enabled.
+
+## Demo Operation
+
+* Make the hardware connections as shown in the hardware setup. Power up the Curiosity Nano board using micro-USB cable.
+* Download the firmware available from the GitHub code example page.
+* Build the project using latest version of tools as mentioned in the Software Tools section and flash the generated file on the AVR128DB48 microcontroller.
+* Monitor the set and clear timings for waveform output A and B.
+
+<p align="center">
+  <img width=600 height=auto src="images/output_wave1.png">
+  <br>Figure 2: Wavefom Output A<br>
+</p>
+
+<p align="center">
+  <img width=600 height=auto src="images/output_wave2.png">
+  <br>Figure 3: Wavefom Output B<br>
+</p>
+
+## Conclusion
+This code example demonstrates generation of high frequency clock input to the TCD peripheral using PLL and OSCHF modules of the AVR128DB48 microcontroller. The real-world power stage control applications greatly benefitted with the TCD peripheral of AVR family of microcontrollers as it can generate high speed PWM waveform with a good resolution.
 
 ## Appendix
 
@@ -71,7 +91,7 @@ Open **Clock Control** setup present under **System** drop down menu in **Projec
 
 <p align="center">
   <img width=600 height=auto src="images/system_config.png">
-  <br>Figure 2: System Configuration<br>
+  <br>Figure 4: System Configuration<br>
 </p>
 
 * **TCD**
@@ -88,12 +108,12 @@ Open **TCD** setup present under **Driver** dropdown menu in **Project Resources
 
 <p align="center">
   <img width=600 height=auto src="images/tcd_config.png">
-  <br>Figure 3: TCD Configuration (Part-1)<br>
+  <br>Figure 5: TCD Configuration (Part-1)<br>
 </p>
 
 <p align="center">
   <img width=600 height=auto src="images/tcd_config1.png">
-  <br>Figure 4: TCD Configuration (Part-2)<br>
+  <br>Figure 6: TCD Configuration (Part-2)<br>
 </p>
 
 ## Pin Mapping
@@ -101,12 +121,12 @@ The following images informs about the pin usage in the project.
 
 <p align="center">
   <img width=600 height=auto src="images/pin_config.png">
-  <br>Figure 5: Pin Mapping (List View)<br>
+  <br>Figure 7: Pin Mapping (List View)<br>
 </p>
 
 <p align="center">
   <img width=600 height=auto src="images/pin_config1.png">
-  <br>Figure 6: Pin Mapping (Navigation View)<br>
+  <br>Figure 8: Pin Mapping (Navigation View)<br>
 </p>
 
 ## Hardware Setup
@@ -114,15 +134,5 @@ The following figure consists of AVR128DB48 Curiosity Nano Evaluation kit along 
 
 <p align="center">
   <img width=600 height=auto src="images/setup.png">
-  <br>Figure 7: Hardware Setup<br>
+  <br>Figure 9: Hardware Setup<br>
 </p>
-
-## Demo Operation
-
-* Make the hardware connections as shown in the hardware setup. Power up the Curiosity Nano board using micro-USB cable.
-* Download the firmware available from the GitHub code example page.
-* Build the project using latest version of tools as mentioned in the Software Tools section and flash the generated file on the AVR128DB48 microcontroller.
-* Monitor the set and clear timings for waveform output A and B.
-
-## Conclusion
-This code example demonstrates generation of high frequency clock input to the TCD peripheral using PLL and OSCHF modules of the AVR128DB48 microcontroller. The real-world power stage control applications greatly benefitted with the TCD peripheral of AVR family of microcontrollers as it can generate high speed PWM waveform with a good resolution.
